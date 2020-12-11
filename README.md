@@ -5,13 +5,13 @@
 ```swift
 $ swift build && swift run advent --help
 
-$ swift build && swift run advent day1 solve1 -i input.txt -o solution1.txt
-$ swift build && swift run advent day1 solve2 -i input.txt -o solution2.txt
+$ swift build && swift run advent --day 1 --part 1 --input input.txt --output solution1.txt
+$ swift build && swift run advent --day 1 --part 2 --input input.txt --output solution2.txt
 ```
 
 # Solved
 
-- [ ] Day1
+- [x] Day1
 - [ ] Day2
 - [ ] Day3
 - [x] Day4
