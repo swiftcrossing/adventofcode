@@ -8,11 +8,7 @@ import ArgumentParser
 struct Day4: Solution {
   func solve1(for input: String, verbose: Bool) throws -> String {
     let passports = try Day4Parser.parse(input)
-
-    print("Parsed contents:", verbose: verbose)
-    for passport in passports {
-      print("\(passport)", verbose: verbose)
-    }
+    passports.printContents(verbose: verbose)
 
     let validCount = passports.filter(\.hasRequiredFields).count
     print("", verbose: verbose)
@@ -22,11 +18,7 @@ struct Day4: Solution {
 
   func solve2(for input: String, verbose: Bool) throws -> String {
     let passports = try Day4Parser.parse(input)
-
-    print("Parsed contents:", verbose: verbose)
-    for passport in passports {
-      print("\(passport)", verbose: verbose)
-    }
+    passports.printContents(verbose: verbose)
 
     let validCount = passports.filter(\.isValid).count
     print("", verbose: verbose)

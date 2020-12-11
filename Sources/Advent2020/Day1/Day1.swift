@@ -8,11 +8,7 @@ import ArgumentParser
 struct Day1: Solution {
   func solve1(for input: String, verbose: Bool) throws -> String {
     let expenses = try Day1Parser.parse(input)
-
-    print("Parsed contents:", verbose: verbose)
-    for expense in expenses {
-      print("\(expense)", verbose: verbose)
-    }
+    expenses.printContents(verbose: verbose)
 
     var product = -1
     iLoop: for (i, iExpense) in expenses.enumerated() {
@@ -26,11 +22,7 @@ struct Day1: Solution {
 
   func solve2(for input: String, verbose: Bool) throws -> String {
     let expenses = try Day1Parser.parse(input)
-
-    print("Parsed contents:", verbose: verbose)
-    for expense in expenses {
-      print("\(expense)", verbose: verbose)
-    }
+    expenses.printContents(verbose: verbose)
 
     var product = -1
     iLoop: for (i, iExpense) in expenses.enumerated() {
