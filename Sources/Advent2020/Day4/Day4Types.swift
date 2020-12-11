@@ -1,7 +1,4 @@
-//
-//  Types.swift
-//  Created by Nolan Warner on 2020/12/05.
-//
+// Created on 2020/12/05.
 
 import Foundation
 
