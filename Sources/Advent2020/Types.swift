@@ -9,10 +9,12 @@ enum ParameterError: Error {
 }
 
 enum Day: String, CaseIterable {
+  case day1
   case day4
 
   var solution: Solution {
     switch self {
+    case .day1: return Day1()
     case .day4: return Day4()
     }
   }
