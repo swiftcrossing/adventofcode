@@ -6,12 +6,14 @@ struct Day2: Solution {
   func solve1(for input: String, verbose: Bool) throws -> String {
     let parsed = try Day2Parser.parse(input)
     parsed.printContents(verbose: verbose)
-    return String(parsed.count)
+    let validCount = parsed.filter(\.hasValidLetterCount).count
+    return String(validCount)
   }
 
   func solve2(for input: String, verbose: Bool) throws -> String {
     let parsed = try Day2Parser.parse(input)
     parsed.printContents(verbose: verbose)
-    return String(parsed.count * 2)
+    let validCount = parsed.filter(\.hasValidLetterCountAndPosition).count
+    return String(validCount)
   }
 }
