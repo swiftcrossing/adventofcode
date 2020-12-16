@@ -13,6 +13,7 @@ enum Day: String, CaseIterable {
   case day5
   case day6
   case day7
+  case day8
 
   var solution: Solution {
     switch self {
@@ -23,6 +24,7 @@ enum Day: String, CaseIterable {
     case .day5: return Day5()
     case .day6: return Day6()
     case .day7: return Day7()
+    case .day8: return Day8()
     }
   }
 
