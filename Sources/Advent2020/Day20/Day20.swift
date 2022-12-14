@@ -13,6 +13,9 @@ struct Day20: Solution {
         return Int(pair.0)!
       })
       .reduce(1, *)
+    let thing = parsed
+      .map(compareSides(tiles: parsed))
+    print(thing)
     return String(sum)
   }
 
@@ -36,4 +39,20 @@ struct Day20: Solution {
       }
     }
   }
+
+  private func compareSides(tiles: [Tile]) -> (Tile) -> (String, Int, Int, Int, Int) {
+    return { tile in
+      tiles.reduce((tile.id, 0, 0, 0, 0)) { (acc, next) in
+        guard tile.id != next.id else { return acc }
+
+        var acc = acc
+        acc.1 += tile.hEdges.intersection(next.hEdges).isEmpty ? 0 : 1
+        acc.2 += tile.vEdges.intersection(next.vEdges).isEmpty ? 0 : 1
+        acc.3 += tile.hEdges.intersection(next.vEdges).isEmpty ? 0 : 1
+        acc.4 += tile.vEdges.intersection(next.hEdges).isEmpty ? 0 : 1
+        return acc
+      }
+    }
+  }
+
 }
