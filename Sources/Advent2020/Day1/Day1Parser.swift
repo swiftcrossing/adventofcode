@@ -3,10 +3,11 @@
 import Foundation
 
 struct Day1Parser {
-  static func parse(_ input: String) throws -> [Expense] {
-    input.split(separator: "\n")
-      .map(String.init)
-      .compactMap(Int.init)
-      .map(Expense.init)
+  static func parse(_ input: String) throws -> [[Int]] {
+    let thing = input.components(separatedBy: "\n")
+    let wow = thing.split(separator: "").map { item in
+      item.compactMap(Int.init)
+    }
+    return wow
   }
 }
