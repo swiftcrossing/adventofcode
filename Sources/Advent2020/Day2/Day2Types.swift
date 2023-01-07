@@ -2,39 +2,51 @@
 
 import Foundation
 
-struct Password {
-  let firstInt: Int
-  let secondInt: Int
-  let requiredLetter: String
-  let value: String
+enum Shoot: String {
+  case rock
+  case paper
+  case scissors
 
-  var firstIndex: Int { firstInt - 1 }
-  var secondIndex: Int { secondInt - 1 }
-
-  init(rawValue: String) {
-    let parts = rawValue.split(separator: ":")
-    let validationParts = parts[0].split(separator: " ")
-    let countParts = validationParts[0].split(separator: "-")
-    firstInt = Int(countParts[0]) ?? 0
-    secondInt = Int(countParts[1]) ?? 0
-    requiredLetter = String(validationParts[1])
-    value = String(parts[1]).trimmingCharacters(in: .whitespacesAndNewlines)
+  var value: Int {
+    switch self {
+    case .rock: return 1
+    case .paper: return 2
+    case .scissors: return 3
+    }
   }
 
-  var hasValidLetterCount: Bool {
-    let requiredLetterCount = value.filter({ String($0) == requiredLetter }).count
-    return firstInt <= requiredLetterCount && requiredLetterCount <= secondInt
+  var actionValue: Int {
+    switch self {
+    case .rock: return 0
+    case .paper: return 3
+    case .scissors: return 6
+    }
   }
 
-  var hasValidLetterCountAndPosition: Bool {
-    let firstCount = Self.count(forChar: requiredLetter, in: value, at: firstIndex)
-    let secondCount = Self.count(forChar: requiredLetter, in: value, at: secondIndex)
-    return firstCount + secondCount == 1
+  static func parse(string: String) -> Shoot {
+    switch string {
+    case "A", "X": return .rock
+    case "B", "Y": return .paper
+    case "C", "Z": return .scissors
+    default: return .rock
+    }
   }
 
-  private static func count(forChar char: String, in string: String, at index: Int) -> Int {
-    guard 0 <= index && index < string.count else { return 0 }
-    let charAtIndex = String(string[string.index(string.startIndex, offsetBy: index)])
-    return charAtIndex == char ? 1 : 0
+  static func play(me: Shoot, opponent: Shoot) -> Int {
+    switch (me, opponent) {
+    case (.scissors, .rock), (.paper, .scissors), (.rock, .paper): return 0
+    case (.rock, .rock), (.paper, .paper),  (.scissors, .scissors): return 3
+    case (.scissors, .paper), (.paper, .rock), (.rock, .scissors): return 6
+    }
+  }
+
+  static func getShoot(opponent: Shoot, action: Shoot) -> Shoot {
+    if Shoot.play(me: .rock, opponent: opponent) == action.actionValue {
+      return .rock
+    } else if Shoot.play(me: .paper, opponent: opponent) == action.actionValue {
+      return .paper
+    } else {
+      return .scissors
+    }
   }
 }
