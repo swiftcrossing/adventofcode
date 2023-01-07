@@ -3,21 +3,21 @@
 import PackageDescription
 
 let package = Package(
-  name: "Advent2020",
+  name: "AdventOfCode",
   products: [
-    .executable(name: "advent", targets: ["Advent2020"]),
+    .executable(name: "advent", targets: ["AdventOfCode"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1")
+    .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
   ],
   targets: [
     .target(
-      name: "Advent2020",
+      name: "AdventOfCode",
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
       ]),
     .testTarget(
-      name: "Advent2020Tests",
-      dependencies: ["Advent2020"]),
+      name: "AdventOfCodeTests",
+      dependencies: ["AdventOfCode"]),
   ]
 )
